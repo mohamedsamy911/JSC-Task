@@ -3,6 +3,7 @@ import Map from "@arcgis/core/Map";
 import BasemapToggle from "@arcgis/core/widgets/BasemapToggle";
 import ScaleBar from "@arcgis/core/widgets/ScaleBar";
 import Home from "@arcgis/core/widgets/Home";
+import Compass from "@arcgis/core/widgets/Compass";
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 import CodedValueDomain from "@arcgis/core/layers/support/CodedValueDomain";
 import { CodedValue } from "@arcgis/core/layers/support/CodedValue";
@@ -279,6 +280,12 @@ function MapComponent({ onMapClick, tableVisible, newData }) {
       ],
     });
     view.ui.add(legend, "top-left");
+
+    //Creating Compass and adding it to the view
+    const compass = new Compass({
+      view: view,
+    });
+    view.ui.add(compass, "bottom-right");
 
     //Listing to map clicks to update the FormComponent with the Coordinates
     view.on("click", (event) => {
