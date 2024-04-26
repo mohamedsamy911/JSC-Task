@@ -54,7 +54,7 @@ npm run preview
 ```bash
 docker build -t tcs-task .
 ```
-2. Build the application:
+2. Run the docker image in **tcs-task** container on **8080** port:
 
 ```bash
 docker run --name tcs-task --rm -d -p 8080:80 tcs-task
