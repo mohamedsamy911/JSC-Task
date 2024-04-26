@@ -1,0 +1,80 @@
+/* Styling for the form container */
+.form-container {
+  overflow-y: scroll; /* Enable vertical scrolling */
+  overflow-x: none; /* Disable horizontal scrolling */
+  position: absolute; /* Position the container */
+  top: 5rem; /* Align the top of the container */
+  right: 2rem; /* Align the right side of the container */
+  height: 60%; /* Set the height of the container */
+  transition: width 0.05s ease-in-out; /* Add a smooth transition effect for width changes */
+  background: rgba(255, 255, 255, 0.32); /* Set the background color with transparency */
+  border-radius: 16px; /* Add border radius for rounded corners */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Add box shadow for depth effect */
+  backdrop-filter: blur(6.2px); /* Apply backdrop filter for background blur */
+  -webkit-backdrop-filter: blur(6.2px); /* For Safari */
+  border: 1px solid rgba(255, 255, 255, 0.56); /* Set border color with transparency */
+}
+
+/* Styling for the form header */
+.form-header {
+  display: flex; /* Set display to flex */
+  justify-content: space-between; /* Align items with space-between */
+  align-items: baseline; /* Align items at the baseline */
+  align-self: start; /* Align the header at the start */
+  margin-bottom: 20px; /* Add margin bottom */
+  position: sticky; /* Make the header sticky */
+  top: 0; /* Align the top of the header */
+  z-index: 10; /* Set the stacking order */
+  width: 100%; /* Set the width to 100% */
+  padding: 8px 0px; /* Add padding */
+}
+
+/* Styling for the form header on hover */
+.form-header div:hover svg.svg-icon {
+  fill: red; /* Change fill color on hover */
+}
+
+/* Styling for the form */
+.form {
+  display: flex; /* Set display to flex */
+  flex-direction: column; /* Set flex direction to column */
+  align-items: center; /* Align items at the center */
+  padding: 0px 1rem; /* Add padding */
+}
+
+/* Styling for the submit button */
+.form button[type="submit"] {
+  width: 25%; /* Set the width of the button */
+  align-self: end; /* Align the button at the end */
+  margin-top: 1rem; /* Add margin top */
+  margin-bottom: 20px; /* Add margin bottom */
+}
+
+/* Styling for the coordinate container */
+.coo-container {
+  display: flex; /* Set display to flex */
+  justify-content: center; /* Align items at the center */
+  gap: 0.8rem; /* Add gap between elements */
+}
+
+/* Scroll bar styling */
+
+/* Width of the scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track of the scrollbar */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle of the scrollbar */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle of the scrollbar on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

@@ -1,0 +1,7 @@
+/* Styling for the action buttons container */
+.action-button {
+  z-index: 0; /* Set the stacking order */
+  position: absolute; /* Position the container */
+  top: 0rem; /* Align the top of the container */
+  right: 2rem; /* Align the right side of the container */
+}

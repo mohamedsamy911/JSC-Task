@@ -1,0 +1,20 @@
+/* Importing the light theme from ArcGIS Core */
+@import "@arcgis/core/assets/esri/themes/light/main.css";
+
+/* Styling for the map container */
+.viewDiv {
+  height: 100vh; /* Set the height to full viewport height */
+  width: 100vw; /* Set the width to full viewport width */
+}
+
+/* Styling for the table container */
+.tableDiv {
+  z-index: 2; /* Set the stacking order to appear above other elements */
+  overflow: hidden; /* Hide any overflowing content */
+  transition: height 0.05s ease-in-out; /* Add a smooth transition effect for height changes */
+  position: absolute !important; /* Set the position to absolute */
+  bottom: 0rem; /* Align the bottom of the container */
+  right: 0rem; /* Align the right side of the container */
+  width: 100%; /* Set the width to full */
+  height: 30%; /* Set the initial height to 30% of the viewport */
+}
