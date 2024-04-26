@@ -8,15 +8,15 @@ This web application allows users to submit Feedbacks with geographic location d
 - Table View: Data submitted via the form is also displayed in a tabular format for easy reference.
 
 ## Technologies Used
-- React: Frontend framework for building the user interface.
-- react-hook-form: Used for managing form state and validation.
-- Ant Design: Provides UI components, including the Select dropdown for feedback types.
-- CSS: Custom styling for the application.
-- calcite-web: Provides Icons and Custom Styling for application
-- ArcGIS API for JavaScript (ArcGIS Core): Used for GIS functionalities and mapping.
-- Vite: Next-generation frontend tooling for React applications.
-- usehooks-ts: Collection of reusable React hooks for various functionalities.
-- Sass: CSS preprocessor for styling, offering more features and flexibility.
+- **React:** Frontend framework for building the user interface.
+- **react-hook-form:** Used for managing form state and validation.
+- **Ant Design:** Provides UI components, including the Select dropdown for feedback types.
+- **CSS:** Custom styling for the application.
+- **calcite-web:** Provides Icons and Custom Styling for application
+- **ArcGIS API for JavaScript (ArcGIS Core):** Used for GIS functionalities and mapping.
+- **Vite:** Next-generation frontend tooling for React applications.
+- **usehooks-ts:** Collection of reusable React hooks for various functionalities.
+- **Sass:** CSS preprocessor for styling, offering more features and flexibility.
 
 ## Installation
 1. Clone the repository:
@@ -29,26 +29,41 @@ git clone https://github.com/mohamedsamy911/JSC-Task.git
 ```bash
 cd JSC-Task
 ```
-3. Install dependencies:
+### Run as server
+1. Install dependencies:
 
 ```bash
 npm install
 ```
-4. Build the application:
+2. Build the application:
 
 ```bash
 npm rub build
 ```
-4. Run the production server:
+3. Run the production server:
 
 ```bash
 npm run preview
+```
+### or
+---
+### Run in [Docker](https://www.docker.com/)
+
+1. Build docker image locally:
+
+```bash
+docker build -t tcs-task .
+```
+2. Build the application:
+
+```bash
+docker run --name tcs-task --rm -d -p 8080:80 tcs-task
 ```
 
 ## Usage
 1. Fill out the form with the required information, including
 name, email, feedback type, and message.
-2. Click on feedback location on the map to set the coordinates (X and Y).
+2. Click the feedback location on the map to set the coordinates (X and Y) in the form.
 3. Submit the form.
 4. View the submitted data on the map and in the table below.
 5. Interact with the map to explore the submitted data further.
