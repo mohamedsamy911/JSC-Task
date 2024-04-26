@@ -1,6 +1,6 @@
 # GIS Data Submission and Visualization Web App
 
-This web application allows users to submit Feedbacks with geographic location data via a form and visualize it on a map and a table. It is built with React and integrates with various GIS libraries for map visualization.
+This web application allows users to submit Feedbacks with geographic location data via a form and visualize it on a map and a table. It is built with React and integrates with **ESRI SDK** for map visualization and interactions.
 
 ## Features
 - Form Submission: Users can submit geographic data including coordinates, name, email, feedback type, and message through a form.
