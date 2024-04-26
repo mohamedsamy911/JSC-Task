@@ -38,7 +38,7 @@ npm install
 2. Build the application:
 
 ```bash
-npm rub build
+npm run build
 ```
 3. Run the production server:
 
