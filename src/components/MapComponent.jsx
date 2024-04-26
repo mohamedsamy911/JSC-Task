@@ -4,8 +4,11 @@ import BasemapToggle from "@arcgis/core/widgets/BasemapToggle";
 import ScaleBar from "@arcgis/core/widgets/ScaleBar";
 import Home from "@arcgis/core/widgets/Home";
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
+import CodedValueDomain from "@arcgis/core/layers/support/CodedValueDomain";
+import { CodedValue } from "@arcgis/core/layers/support/CodedValue";
 import FeatureTable from "@arcgis/core/widgets/FeatureTable";
 import * as reactiveUtils from "@arcgis/core/core/reactiveUtils";
+import Legend from "@arcgis/core/widgets/Legend";
 import { useEffect, useRef, useState } from "react";
 import "./MapComponent.css";
 
@@ -15,6 +18,24 @@ function MapComponent({ onMapClick, tableVisible, newData }) {
   const [fl, setFl] = useState(null); //Global FeatureLayer variable
   const [ft, setFt] = useState(null); //Global FeatureTable variable
   let selectionIdCount = 0; // The filtered selection id count
+
+  //Creating a codedValue list for feedbackType field
+  const codedValues = [
+    new CodedValue({ code: "complain", name: "Complain" }),
+    new CodedValue({
+      code: "requestInformation",
+      name: "Request Information",
+    }),
+    new CodedValue({ code: "missedServices", name: "Missed Services" }),
+    new CodedValue({ code: "addInformation", name: "Add Information" }),
+    new CodedValue({ code: "other", name: "Other" }),
+  ];
+
+  //Creating CodedValueDomain for feedbackType field
+  const domain = new CodedValueDomain({
+    name: "feedbackType",
+    codedValues: codedValues,
+  });
 
   //Handling vector data, fetching it from the localstorage and set default value in case if there is no data
   const [data, setData] = useState(
@@ -84,16 +105,9 @@ function MapComponent({ onMapClick, tableVisible, newData }) {
     const pointRenderer = {
       type: "unique-value",
       field: "feedbackType",
-      defaultSymbol: {
-        type: "simple-marker",
-        color: [128, 128, 128], // Default color for unknown types
-        outline: {
-          color: [255, 255, 255],
-          width: 2,
-        },
-      },
       uniqueValueInfos: [
         {
+          label: "Complain",
           value: "complain",
           symbol: {
             type: "simple-marker",
@@ -101,6 +115,7 @@ function MapComponent({ onMapClick, tableVisible, newData }) {
           },
         },
         {
+          label: "Request Information",
           value: "requestInformation",
           symbol: {
             type: "simple-marker",
@@ -108,6 +123,7 @@ function MapComponent({ onMapClick, tableVisible, newData }) {
           },
         },
         {
+          label: "Missed Services",
           value: "missedServices",
           symbol: {
             type: "simple-marker",
@@ -115,6 +131,7 @@ function MapComponent({ onMapClick, tableVisible, newData }) {
           },
         },
         {
+          label: "Add Information",
           value: "addInformation",
           symbol: {
             type: "simple-marker",
@@ -122,6 +139,7 @@ function MapComponent({ onMapClick, tableVisible, newData }) {
           },
         },
         {
+          label: "Other",
           value: "other",
           symbol: {
             type: "simple-marker",
@@ -150,6 +168,7 @@ function MapComponent({ onMapClick, tableVisible, newData }) {
 
     //Creating the FeatureLayer
     let flayer = new FeatureLayer({
+      title: "Feedbacks",
       source: features,
       renderer: pointRenderer,
       objectIdField: "ObjectId",
@@ -157,7 +176,12 @@ function MapComponent({ onMapClick, tableVisible, newData }) {
         { name: "ObjectId", alias: "ObjectId", type: "oid" },
         { name: "name", alias: "name", type: "string" },
         { name: "email", alias: "email", type: "string" },
-        { name: "feedbackType", alias: "feedbackType", type: "string" },
+        {
+          name: "feedbackType",
+          alias: "feedbackType",
+          type: "string",
+          domain: domain,
+        },
         { name: "message", alias: "message", type: "string" },
         { name: "x", alias: "x", type: "double" },
         { name: "y", alias: "y", type: "double" },
@@ -220,6 +244,7 @@ function MapComponent({ onMapClick, tableVisible, newData }) {
       },
       zoom: 12,
     });
+
     //Creating basemap toggler and adding it to the view
     const basemapToggle = new BasemapToggle({
       view: view, // The view that provides access to the map's "satellite" basemap
@@ -242,6 +267,18 @@ function MapComponent({ onMapClick, tableVisible, newData }) {
       view: view,
     });
     view.ui.add(homeBtn, "top-left");
+
+    //Creating Legend and adding it to the view
+    const legend = new Legend({
+      view: view,
+      layerInfos: [
+        {
+          layer: flayer,
+          title: "Feedbacks",
+        },
+      ],
+    });
+    view.ui.add(legend, "top-left");
 
     //Listing to map clicks to update the FormComponent with the Coordinates
     view.on("click", (event) => {
